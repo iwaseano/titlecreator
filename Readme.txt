@@ -3,48 +3,49 @@ Internal TitleCreator
 Created by Yosuke Iino
 
 -------------------
-�� .exe �t�@�C���̏ꏊ
+◆ .exe ファイルの場所
 ===================
+右上にある [Clone or Download] から git clone するか .zip で入手してください。
 
 dist/TitleCreator/TitleCreator.exe
-[TitleCreator.exe] ���V���[�g�J�b�g�ɂ���Ȃ�s���~�߂���Ȃ肵�Ďg���Ă��������B
+[TitleCreator.exe] をショートカットにするなりピン止めするなりして使ってください。
 
 -------------------
-�� �g�p����O��
+◆ 使用する前に
 ===================
-Edge �̃o�[�W������ "17763" �ł���K�v������܂��B
-�u�I�v�V�����@�\�̊Ǘ��v-->�u�@�\�̒ǉ��v����A"Microsoft WebDriver" ���C���X�g�[������K�v������܂��B
+Edge のバージョンが "17763" である必要があります。
+「オプション機能の管理」-->「機能の追加」から、"Microsoft WebDriver" をインストールする必要があります。
 
 -------------------
-�� �ȑO�Ƃ̕ύX�_
+◆ 以前との変更点
 ===================
-�E[Status]��"MR"��ǉ����܂����B
-�E[Service Level] �̃f�t�H���g�l�� "Proffesional" �ւƕύX���܂����B
-�EScrape �{�^�����������ƂŁA�����I�� [Severity]�A[Product]�A[Title] �����͂����悤�ɂȂ�܂����B
+・[Status]に"MR"を追加しました。
+・[Service Level] のデフォルト値を "Proffesional" へと変更しました。
+・Scrape ボタンを押すことで、自動的に [Severity]、[Product]、[Title] が入力されるようになりました。
 
-��{���܂ł� Title Creator �Ɠ����悤�Ɏg����͂��B
+基本今までの Title Creator と同じように使えるはず。
 
 -------------------
-�� Scrape �@�\�ɂ���
+◆ Scrape 機能について
 ===================
 
-SR �ԍ�����͂��A�yScrape�z�{�^���������ƁA�����I�� [Severity]�A[Product]�A[Title] �����͂���܂��B
+SR 番号を入力し、【Scrape】ボタンを押すと、自動的に [Severity]、[Product]、[Title] が入力されます。
 
-�܂��A�擾���ɂ́AEdge ���N�����Ă��Ȃ��K�v������܂��B
-�yScrape�z�{�^���������O�� Edge ���I��������K�v������܂��B
+また、取得時には、Edge が起動していない必要があります。
+【Scrape】ボタンを押す前に Edge を終了させる必要があります。
 
 -------------------
-�� Update ��
+◆ Update 案
 ===================
 
-�E���R�ҏW����ǉ�����
-�E�擾�Ɏ��s�����ۂɁA�G���[���b�Z�[�W��\��������
+・自由編集欄を追加する
+・取得に失敗した際に、エラーメッセージを表示させる
 
 -------------------
-�� Release Note
+◆ Release Note
 ===================
 
-2020/02/19 v1.00: �쐬
-2020/02/21 v1.01: ���C�A�E�g�̏C��
-2020/02/21 v1.02: [Service Level] �̃f�t�H���g�l�� "Proffesional" �֕ύX
-2020/03/02 v1.03: Scrape �@�\��ǉ�
+2020/02/19 v1.00: 作成
+2020/02/21 v1.01: レイアウトの修正
+2020/02/21 v1.02: [Service Level] のデフォルト値を "Proffesional" へ変更
+2020/03/02 v1.03: Scrape 機能を追加
