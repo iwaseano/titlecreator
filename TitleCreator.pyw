@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 import pyperclip as pyp
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import time,os
 
 # 変数定義
 back = "#66a5ad"
@@ -20,7 +23,7 @@ root.geometry("400x500")
 root.configure(bg=back)
 
 # Title Creator
-Creator = tk.Label(text=u'Title Creator v1.02', foreground=fcolor, background=back, font=(u'Impact',20))
+Creator = tk.Label(text=u'Title Creator', foreground=fcolor, background=back, font=(u'Impact',20))
 Creator.pack()
 # NextC 記入フレーム定義
 root2 = tk.Frame(background=back)
@@ -154,13 +157,69 @@ def CreateTitle():
   result = '/'.join(listed)
   resultBox.delete('1.0', 'end')
   resultBox.insert(tk.END,result)
-  resultBox.pack()
+  #resultBox.pack()
   # コピー処理
   clip = resultBox.get('1.0', 'end')
   pyp.copy(clip)
 # ボタン埋まる回避処理
 def click(event):
   root.after(1, CreateTitle)
+
+# スクレイピング
+def Scrape():
+
+  listed = []
+  nextc = EditBox1.get()
+  if nextc == "":
+    res = messagebox.showinfo("未入力", "NextC が未入力です")
+    return print(res)
+  EditBox3.delete(0, tk.END)
+  proBox.delete(0,tk.END)
+  listed.append(nextc)
+  status = EditBox2.get()
+  listed.append(status)
+  level = levelBox.get()
+  listed.append(level)
+
+  '''
+  casenum = resultBox.get('1.0', 'end')
+  url = "https://servicedesk.microsoft.com/#/customer/case/" + str(casenum)
+  ''' 
+  url = "http://goodmorningspa.sakura.ne.jp/sd.html"
+  driver = webdriver.Edge()
+  driver.get(url)
+  time.sleep(1)
+  html = driver.page_source.encode('utf-8')
+  soup = BeautifulSoup(html, "html.parser")
+
+  sevd = soup.find_all("a",class_="select-anchor ng-binding")[-1]
+  sev = sevd.get("title")
+  listed.append(sev)
+
+  # Product 取得
+  pro = soup.select('input')[7]
+  product = pro.get('data-bi-name')
+  proBox.insert(tk.END,product)
+  listed.append(product)
+
+  # Title 取得
+  titled = soup.find_all("span",class_="ng-binding")[7]
+  title = titled.string
+  EditBox3.insert(tk.END,title)
+  listed.append(title)
+
+  # Self A 代入
+  selfa = EditBox4.get()
+  listed.append(selfa)
+
+  driver.close()
+  result = '/'.join(listed)
+  resultBox.delete('1.0', 'end')
+  resultBox.insert(tk.END,result)
+
+# ボタン埋まる回避処理2
+def click2(event):
+  root.after(1, Scrape)
 
 # 削除処理
 def DeleteData(event):
@@ -191,7 +250,10 @@ Button2.pack(side="left",padx=5)
 Button3 = tk.Button(ButtonFrame,text=u'Copy')
 Button3.bind("<Button-1>",CopyClip) 
 Button3.pack(side="left",padx=5)
-
+# Scrape ボタン
+Button4 = tk.Button(ButtonFrame,text=u'Scrape')
+Button4.bind("<Button-1>",click2) 
+Button4.pack(side="left",padx=5)
 
 #出力表示領域フレーム定義
 outputFrame = tk.Frame(background=back)
