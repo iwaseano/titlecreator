@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['TitleCreator.pyw'],
-             pathex=['C:\\Users\\Yosuke\\Desktop\\python\\pending\\TitleCreator'],
+             pathex=['C:\\Users\\yosuke.iino\\Documents\\My Web Sites\\tc\\titlecreator\\titlecreator'],
              binaries=[],
              datas=[],
              hiddenimports=[],

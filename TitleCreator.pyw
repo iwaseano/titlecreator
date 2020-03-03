@@ -181,14 +181,11 @@ def Scrape():
   level = levelBox.get()
   listed.append(level)
 
-  '''
   casenum = resultBox.get('1.0', 'end')
   url = "https://servicedesk.microsoft.com/#/customer/case/" + str(casenum)
-  ''' 
-  url = "http://goodmorningspa.sakura.ne.jp/sd.html"
   driver = webdriver.Edge()
   driver.get(url)
-  time.sleep(1)
+  time.sleep(8)
   html = driver.page_source.encode('utf-8')
   soup = BeautifulSoup(html, "html.parser")
 
